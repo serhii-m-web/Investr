@@ -29,7 +29,7 @@
 	margin-bottom: 2rem;
 	font-size: 1.125rem;
 	line-height: 1.5;
-	color: $black4A;
+	color: $color-muted;
 
 	@include media('>=tablet') {
 		margin-bottom: 2.5rem;
@@ -69,7 +69,7 @@
 		border: 2px solid $base-text-color;
 
 		&:hover {
-			color: $white;
+			color: $color-on-dark;
 			background-color: $base-text-color;
 		}
 	}

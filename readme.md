@@ -10,7 +10,7 @@ Starter template for landing pages based on Vite (JavaScript only, no TypeScript
 - **Automatic WebP conversion**: `sharp`-based script (`scripts/convertToWebp.js`) processes images and generates WebP versions.
 - **`picture` helper**: convenient `<picture>` generation with WebP and fallback images directly in Handlebars templates.
 - **ESLint + Prettier**: ready-to-use linting and formatting setup.
-- **GitHub Pages ready**: `base` in `vite.config.js` is configured for deployment.
+- **GitHub Pages ready**: uses relative `base` so it works in any repo path.
 
 ---
 
@@ -62,7 +62,10 @@ npm run preview
 - **`npm run dev`**: start Vite dev server.
 - **`npm run build`**: build the project with Vite into `dist`.
 - **`npm run preview`**: run a local server to preview the built app.
-- **`npm run lint`**: run ESLint for `.js` files.
+- **`npm run lint`**: run ESLint.
+- **`npm run lint:fix`**: run ESLint and auto-fix issues where possible.
+- **`npm run format`**: format the project with Prettier.
+- **`npm run format:check`**: check formatting with Prettier (CI-friendly).
 - **`npm run webp`**: one-off WebP conversion via `scripts/convertToWebp.js`.
 - **`npm run webp:watch`**: watch mode for images, automatically converts on changes.
 
@@ -126,14 +129,13 @@ This will automatically format your code with Prettier on save.
 
 ### Deploying to GitHub Pages
 
-`vite.config.js` already contains:
+`vite.config.js` uses **`base: './'`**, so the build works from any subpath (including `https://<USERNAME>.github.io/<REPO>/`) without changing config.
 
-- **`base: '/vite-landing-template-light'`**
+If you want to disable automatic WebP conversion (e.g. on CI), set:
 
-If your repository has a different name, change `base` to `/<REPO>/`, where `<REPO>` is your GitHub repository name.
-
-- If you deploy to `https://<USERNAME>.github.io/`, you can keep `base` as `'/'` or remove it.
-- If you deploy to `https://<USERNAME>.github.io/<REPO>/`, make sure to set `base: '/<REPO>'`.
+```sh
+VITE_WEBP_CONVERT=false
+```
 
 Typical deploy flow:
 

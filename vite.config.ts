@@ -1,40 +1,50 @@
-/* eslint-disable no-undef */
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
 import { htmlFiles } from './getHTMLFileNames';
 import {
   run as runWebpConversion,
   startWatch as startWebpWatch,
-} from './scripts/convertToWebp.js';
+} from './scripts/convertToWebp';
 
-/**
- * Renders <picture> with WebP source and PNG/JPEG fallback.
- * Usage: {{{picture "/images/photo.png" alt="Description"}}} (triple braces for raw HTML)
- * Optional hash: alt, class, loading (default "lazy"), width, height, sources (array of objects with media and srcset)
- *
- * Example with media queries:
- * {{{picture "/images/hero.png" alt="Hero" sources=(array (object media="(max-width: 768px)" srcset="/images/hero-mobile.png") (object media="(min-width: 769px)" srcset="/images/hero-desktop.png"))}}}
- */
+type PictureSource = {
+  media?: string;
+  srcset?: string;
+  src?: string;
+  type?: string;
+};
 
-function pictureHelper(pathOrSrc, options = {}) {
+type PictureHelperHash = {
+  alt?: string;
+  class?: string;
+  loading?: string;
+  width?: number | string;
+  height?: number | string;
+  sources?: PictureSource[];
+};
+
+type PictureHelperOptions = {
+  hash?: PictureHelperHash;
+};
+
+function pictureHelper(pathOrSrc: unknown, options: PictureHelperOptions = {}): string {
   const src = typeof pathOrSrc === 'string' ? pathOrSrc : '';
   const hash = options.hash || {};
   const alt = hash.alt != null ? String(hash.alt) : '';
   const className = hash.class != null ? ` class="${String(hash.class)}"` : '';
   const loading = hash.loading != null ? String(hash.loading) : 'lazy';
-  const width = hash.width != null ? ` width="${Number(hash.width)}"` : '';
-  const height = hash.height != null ? ` height="${Number(hash.height)}"` : '';
+  const width =
+    hash.width != null ? ` width="${Number(hash.width)}"` : '';
+  const height =
+    hash.height != null ? ` height="${Number(hash.height)}"` : '';
   const sources = hash.sources || [];
 
-  // Use relative path so browser resolves once with document <base href="/WacthCash/"> (avoids /WacthCash/WacthCash/...)
   const normalized = src.replace(/^\//, '');
   const imgPath = normalized;
   const webpPath = normalized.replace(/\.(png|jpe?g)$/i, '.webp');
 
   let sourcesHtml = '';
 
-  // Add custom sources with media queries
   if (Array.isArray(sources) && sources.length > 0) {
     sources.forEach((source) => {
       if (source && typeof source === 'object') {
@@ -66,7 +76,10 @@ function pictureHelper(pathOrSrc, options = {}) {
   );
 }
 
-const input = { main: resolve(__dirname, 'src/index.html') };
+const input: Record<string, string> = {
+  main: resolve(__dirname, 'src/index.html'),
+};
+
 htmlFiles.forEach((file) => {
   input[file.replace('.html', '')] = resolve(__dirname, 'src', file);
 });
@@ -86,69 +99,72 @@ const webpPlugin = () => {
 const handlebarsReloadPlugin = () => {
   return {
     name: 'handlebars-reload',
-    handleHotUpdate({ file, server }) {
+    handleHotUpdate({ file, server }: { file: string; server: any }) {
       const normalizedPath = file.replace(/\\/g, '/');
 
-      // Check if changed file is a partial (template or section)
       if (
         normalizedPath.includes('/templates/') ||
         normalizedPath.includes('/sections/')
       ) {
-        // Force full page reload when partials change
         server.ws.send({
           type: 'full-reload',
           path: '*',
         });
         return [];
       }
+
+      return [];
     },
-    configureServer(server) {
+    configureServer(server: any) {
       const templatesDir = resolve(__dirname, 'src/templates');
       const sectionsDir = resolve(__dirname, 'src/sections');
 
-      // Explicitly watch templates and sections directories
       server.watcher.add([templatesDir, sectionsDir]);
     },
   };
 };
 
-export default defineConfig({
-  base: '/vite-landing-template-light',
-  root: 'src',
-  publicDir: '../public',
-  plugins: [
-    handlebars({
-      partialDirectory: [
-        resolve(__dirname, 'src/templates'),
-        resolve(__dirname, 'src/sections'),
-      ],
-      reloadOnPartialChange: true,
-      helpers: {
-        picture: pictureHelper,
-        array: function (...args) {
-          // Remove the last argument which is Handlebars options object
-          const items = args.slice(0, -1);
-          return items;
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  const enableWebpConvert = env.VITE_WEBP_CONVERT !== 'false';
+
+  return {
+    base: './',
+    root: 'src',
+    publicDir: '../public',
+    plugins: [
+      handlebars({
+        partialDirectory: [
+          resolve(__dirname, 'src/templates'),
+          resolve(__dirname, 'src/sections'),
+        ],
+        reloadOnPartialChange: true,
+        helpers: {
+          picture: pictureHelper,
+          array: function (...args: unknown[]) {
+            const items = args.slice(0, -1);
+            return items;
+          },
+          object: function (...args: unknown[]) {
+            const options = args[args.length - 1] as { hash?: Record<string, unknown> };
+            return options.hash || {};
+          },
         },
-        object: function (...args) {
-          // Remove the last argument which is Handlebars options object
-          const options = args[args.length - 1];
-          return options.hash || {};
-        },
+      }),
+      handlebarsReloadPlugin(),
+      ...(enableWebpConvert ? [webpPlugin()] : []),
+    ],
+    build: {
+      rollupOptions: {
+        input,
       },
-    }),
-    handlebarsReloadPlugin(),
-    webpPlugin(),
-  ],
-  build: {
-    rollupOptions: {
-      input,
+      outDir: '../dist/',
+      emptyOutDir: true,
     },
-    outDir: '../dist/',
-    emptyOutDir: true,
-  },
-  server: {
-    host: true,
-    open: true,
-  },
+    server: {
+      host: true,
+      open: true,
+    },
+  };
 });
+

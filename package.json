@@ -1,5 +1,5 @@
 {
-  "name": "vite-template",
+  "name": "vite-template-ts",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .js",
-    "webp": "node scripts/convertToWebp.js",
-    "webp:watch": "node scripts/convertToWebp.js --watch"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
+    "webp": "tsx scripts/convertToWebp.ts",
+    "webp:watch": "tsx scripts/convertToWebp.ts --watch"
   },
   "devDependencies": {
     "eslint": "^8.52.0",
@@ -18,6 +22,9 @@
     "prettier": "^3.0.3",
     "sass": "^1.69.5",
     "sharp": "^0.34.5",
+    "typescript": "^5.5.0",
+    "tsx": "^4.7.0",
+    "@types/node": "^20.11.0",
     "vite": "^4.4.5",
     "vite-plugin-handlebars": "^1.6.0"
   }
