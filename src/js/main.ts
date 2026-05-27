@@ -1,3 +1,6 @@
+import { Swiper } from 'swiper';
+import 'swiper/css';
+
 function init(): void {
   document.documentElement.classList.add('js');
 
@@ -13,3 +16,12 @@ if (document.readyState === 'loading') {
   init();
 }
 
+function initReviewsSlider(): void {
+  new Swiper('.reviews__slider', {
+    slidesPerView: 1.9,
+    spaceBetween: 32,
+    grabCursor: true,
+  });
+}
+
+initReviewsSlider();

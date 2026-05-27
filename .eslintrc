@@ -18,9 +18,12 @@
   ],
   "settings": {
     "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      },
       "node": {
-        "paths": ["src"],
-        "extensions": [".ts"]
+        "extensions": [".ts", ".css", ".scss"]
       }
     }
   },

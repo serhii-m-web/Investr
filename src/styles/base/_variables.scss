@@ -1,5 +1,6 @@
 // Colors (keep palette minimal and semantic)
-$base-white: #f8fbff;
+$base-light-gray: #f8fbff;
+$base-white: #ffffff;
 $base-black: #232429;
 $base-gray: #4a4b4f;
 $base-blue: #142a40;
@@ -38,7 +39,7 @@ $placeholder-color: $base-gray !default;
 
 // Headers
 $h1-font-size: 78px;
-$h2-font-size: 52px;
+$h2-font-size: 72px;
 $h3-font-size: 24px;
 $h4-font-size: 22px;
 $h5-font-size: 17px;
