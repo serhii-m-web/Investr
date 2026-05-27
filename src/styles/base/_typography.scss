@@ -13,7 +13,7 @@ h5,
 h6,
 .h6,
 .h {
-  font-weight: bold;
+  font-weight: 600;
   color: $headings-color;
   font-family: $base-font-family-secondary;
   margin: 0;
@@ -27,11 +27,13 @@ h1,
 h2,
 .h2 {
   font-size: $h2-font-size;
+  line-height: calc(76 / 72);
 }
 
 h3,
 .h3 {
   font-size: $h3-font-size;
+  line-height: calc(56 / 52);
 }
 
 h4,
