@@ -70,6 +70,7 @@ function init(): void {
 
   initReviewsSlider();
   initChangesSection();
+  initDifferentSlider();
 }
 
 if (document.readyState === 'loading') {
@@ -82,6 +83,16 @@ function initReviewsSlider(): void {
   document.querySelectorAll<HTMLElement>('.reviews__slider').forEach((el) => {
     new Swiper(el, {
       slidesPerView: 1.9,
+      spaceBetween: 32,
+      grabCursor: true,
+      speed: 1350,
+    });
+  });
+}
+function initDifferentSlider(): void {
+  document.querySelectorAll<HTMLElement>('.different__slider').forEach((el) => {
+    new Swiper(el, {
+      slidesPerView: 2,
       spaceBetween: 32,
       grabCursor: true,
       speed: 1350,
