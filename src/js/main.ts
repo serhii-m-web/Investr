@@ -84,6 +84,7 @@ function initReviewsSlider(): void {
       slidesPerView: 1.9,
       spaceBetween: 32,
       grabCursor: true,
+      speed: 1350,
     });
   });
 }

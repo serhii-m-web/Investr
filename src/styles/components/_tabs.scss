@@ -1,11 +1,24 @@
 .tabs {
   &__panels {
-    position: relative;
+    display: grid;
   }
 
   &__panel {
-    &:not(.active) {
-      display: none;
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease,
+      transform 0.25s ease;
+    transform: translateY(8px);
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
     }
   }
 }
@@ -13,21 +26,50 @@
 .tab-buttons {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
+  border-radius: 999px;
+  background-color: $base-white;
+  box-shadow: 0px 4px 20px 0px #1315151f;
+  padding: 8px;
+  width: max-content;
 
   &__item {
+    padding: 12px 24px;
+    border-radius: 999px;
     border: none;
     margin: 0;
+    width: max-content;
     cursor: pointer;
-    font: inherit;
+    font-family: $base-font-family-secondary;
+    font-size: 18px;
+    line-height: calc(22 / 18);
+    font-weight: 500;
+    color: $base-black;
     background-color: transparent;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
 
+    &.active {
+      background-color: $base-blue;
+      color: $base-white;
+    }
+
     &:focus-visible {
       outline: 2px solid $base-blue;
       outline-offset: 2px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs__panel {
+    transition: none;
+    transform: none;
+
+    &.active {
+      transform: none;
     }
   }
 }

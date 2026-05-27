@@ -34,7 +34,9 @@ export class Tabs {
     const buttons = Array.from(
       root.querySelectorAll<HTMLButtonElement>(buttonSelector),
     );
-    const panels = Array.from(root.querySelectorAll<HTMLElement>(panelSelector));
+    const panels = Array.from(
+      root.querySelectorAll<HTMLElement>(panelSelector),
+    );
 
     if (!buttons.length || buttons.length !== panels.length) {
       throw new Error(
@@ -91,7 +93,11 @@ export class Tabs {
   }
 
   activate(index: number, silent = false): void {
-    if (index < 0 || index >= this.panels.length || index === this.activeIndex) {
+    if (
+      index < 0 ||
+      index >= this.panels.length ||
+      index === this.activeIndex
+    ) {
       return;
     }
 
@@ -107,7 +113,8 @@ export class Tabs {
     this.panels.forEach((panel, i) => {
       const isActive = i === index;
       panel.classList.toggle(this.activeClass, isActive);
-      panel.toggleAttribute('hidden', !isActive);
+      panel.setAttribute('aria-hidden', String(!isActive));
+      panel.toggleAttribute('inert', !isActive);
     });
 
     if (!silent) {
