@@ -53,6 +53,9 @@ h6,
 
 p {
   margin: 0;
+  color: $base-gray;
+  @include adaptive-value('font-size', 18, 16, 1);
+  line-height: calc(22 / 18);
 }
 
 a {
