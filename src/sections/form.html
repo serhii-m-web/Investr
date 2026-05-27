@@ -1,0 +1,82 @@
+<section class="form-section site-section">
+  {{{picture "/images/hero-clouds.png" alt="image not found"
+  class="form-section__clouds"}}}
+  <div class="form-section__city-wrapper">
+    {{{picture "/images/hero-city.png" alt="image not found"
+    class="form-section__city"}}}
+  </div>
+  <div class="container">
+    <h2 class="form-section__title">Your Next Deal is Waiting</h2>
+    <p class="form-section__description">
+      Get early access to Investr before public launch.
+    </p>
+
+    <form class="form-section__form" action="#" method="post" novalidate>
+      <fieldset class="form-section__role">
+        <legend class="form-section__role-legend">I am a:</legend>
+        <div class="form-section__role-options">
+          <label class="form-section__radio">
+            <input type="radio" name="role" value="founder" checked required />
+            <span class="form-section__radio-mark" aria-hidden="true"></span>
+            <span class="form-section__radio-text">Founder</span>
+          </label>
+          <label class="form-section__radio">
+            <input type="radio" name="role" value="investor" />
+            <span class="form-section__radio-mark" aria-hidden="true"></span>
+            <span class="form-section__radio-text">Investor</span>
+          </label>
+          <label class="form-section__radio">
+            <input type="radio" name="role" value="both" />
+            <span class="form-section__radio-mark" aria-hidden="true"></span>
+            <span class="form-section__radio-text">Both</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="form-section__fields">
+        <label class="form-section__field">
+          <span class="visually-hidden">First name</span>
+          <input
+            class="form-section__input"
+            type="text"
+            name="firstName"
+            placeholder="Enter your first name"
+            autocomplete="given-name"
+            required
+          />
+        </label>
+        <label class="form-section__field">
+          <span class="visually-hidden">Last name</span>
+          <input
+            class="form-section__input"
+            type="text"
+            name="lastName"
+            placeholder="Enter your last name"
+            autocomplete="family-name"
+            required
+          />
+        </label>
+        <label class="form-section__field">
+          <span class="visually-hidden">Email address</span>
+          <input
+            class="form-section__input"
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+            autocomplete="email"
+            required
+          />
+        </label>
+      </div>
+
+      <button class="form-section__submit btn" type="submit">
+        Join the Waitlist
+      </button>
+    </form>
+
+    <p class="form-section__note">
+      Early access members get priority onboarding, exclusive features, and
+      first access to the network.
+    </p>
+  </div>
+</section>
