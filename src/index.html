@@ -1,27 +1,50 @@
 <!doctype html>
 <html lang="en" id="top">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#232429" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Investr" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-title" content="Investr" />
+    <meta name="msapplication-TileColor" content="#232429" />
+    <meta name="msapplication-TileImage" content="/icons/header-logo.svg" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <title>Investr</title>
+    <meta
+      name="description"
+      content="Investr is a platform for investing in real estate."
+    />
+    <link rel="stylesheet" href="/styles/main.scss" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite Template</title>
-  <meta
-    name="description"
-    content="Starter template for landing pages built with Vite and Handlebars."
-  />
-  <link rel="stylesheet" href="/styles/main.scss" />
-</head>
-
-<body>
-  <a class="skip-link visually-hidden" href="#main-content">Skip to content</a>
-  {{> header }}
-  <main id="main-content" tabindex="-1">
-    {{> section-hero }}
-    {{> section-features }}
-    {{> section-cta }}
-  </main>
-  {{> footer }}
-  <script type="module" src="/js/main.ts"></script>
-</body>
-
+  <body>
+    <a class="skip-link visually-hidden" href="#main-content"
+      >Skip to content</a
+    >
+    {{> header }}
+    <main id="main-content" tabindex="-1">{{> hero }}</main>
+    {{> footer }}
+    <script type="module" src="/js/main.ts"></script>
+  </body>
 </html>

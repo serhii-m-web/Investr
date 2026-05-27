@@ -51,12 +51,15 @@ export async function run(): Promise<void> {
   }
 }
 
-function debounce<T extends (...args: any[]) => void>(fn: T, ms: number): T {
+function debounce<T extends unknown[]>(
+  fn: (...args: T) => void,
+  ms: number,
+): (...args: T) => void {
   let timeout: NodeJS.Timeout | undefined;
-  return ((...args: Parameters<T>) => {
+  return (...args: T) => {
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => fn(...args), ms);
-  }) as T;
+  };
 }
 
 export function startWatch(): void {
@@ -89,10 +92,11 @@ export function startWatch(): void {
 function isMainModule(): boolean {
   try {
     const scriptPath = fileURLToPath(import.meta.url);
-    return (
-      process.argv[1] &&
-      path.resolve(process.argv[1]) === path.resolve(scriptPath)
-    );
+    const entry = process.argv[1];
+    if (!entry) {
+      return false;
+    }
+    return path.resolve(entry) === path.resolve(scriptPath);
   } catch {
     return false;
   }

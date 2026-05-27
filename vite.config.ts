@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, type Plugin, type ViteDevServer } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
 import { htmlFiles } from './getHTMLFileNames';
 import {
@@ -84,45 +84,45 @@ htmlFiles.forEach((file) => {
   input[file.replace('.html', '')] = resolve(__dirname, 'src', file);
 });
 
-const webpPlugin = () => {
-  return {
-    name: 'webp-convert',
-    async buildStart() {
-      await runWebpConversion();
-    },
-    configureServer() {
-      startWebpWatch();
-    },
-  };
-};
+const webpPlugin = (): Plugin => ({
+  name: 'webp-convert',
+  async buildStart() {
+    await runWebpConversion();
+  },
+  configureServer() {
+    startWebpWatch();
+  },
+});
 
-const handlebarsReloadPlugin = () => {
-  return {
-    name: 'handlebars-reload',
-    handleHotUpdate({ file, server }: { file: string; server: any }) {
-      const normalizedPath = file.replace(/\\/g, '/');
+const handlebarsReloadPlugin = (): Plugin => ({
+  name: 'handlebars-reload',
+  handleHotUpdate({ file, server }) {
+    const normalizedPath = file.replace(/\\/g, '/');
 
-      if (
-        normalizedPath.includes('/templates/') ||
-        normalizedPath.includes('/sections/')
-      ) {
-        server.ws.send({
-          type: 'full-reload',
-          path: '*',
-        });
-        return [];
-      }
+    if (
+      normalizedPath.includes('/templates/') ||
+      normalizedPath.includes('/sections/')
+    ) {
+      server.ws.send({
+        type: 'full-reload',
+        path: '*',
+      });
 
+      // Returning an empty array tells Vite "we handled it" and prevents
+      // default HMR processing. We only want that behavior for handlebars
+      // partials/sections; for everything else we let Vite handle HMR (e.g. SCSS).
       return [];
-    },
-    configureServer(server: any) {
-      const templatesDir = resolve(__dirname, 'src/templates');
-      const sectionsDir = resolve(__dirname, 'src/sections');
+    }
 
-      server.watcher.add([templatesDir, sectionsDir]);
-    },
-  };
-};
+    return undefined;
+  },
+  configureServer(server: ViteDevServer) {
+    const templatesDir = resolve(__dirname, 'src/templates');
+    const sectionsDir = resolve(__dirname, 'src/sections');
+
+    server.watcher.add([templatesDir, sectionsDir]);
+  },
+});
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
