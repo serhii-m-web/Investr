@@ -76,11 +76,17 @@
     box-shadow: 0px 4px 20px 0px #1315150d;
     height: 100%;
 
-    p {
-      color: #606163;
-      @include adaptive-value('font-size', 20, 16, 1);
-      line-height: calc(24 / 20);
-      margin-bottom: auto;
+    &-quote {
+      margin: 0 0 auto;
+      padding: 0;
+      border: none;
+
+      p {
+        color: #606163;
+        @include adaptive-value('font-size', 20, 16, 1);
+        line-height: calc(24 / 20);
+        margin: 0;
+      }
     }
 
     &-author {
@@ -114,6 +120,7 @@
       }
 
       &-name {
+        font-style: normal;
         font-weight: 600;
         color: $base-black;
         @include adaptive-value('font-size', 22, 18, 1);
@@ -121,6 +128,7 @@
       }
 
       &-position {
+        margin: 0;
         color: $base-gray;
         @include adaptive-value('font-size', 18, 16, 1);
         line-height: calc(22 / 18);
@@ -131,8 +139,11 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 12px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
 
-        span {
+        li {
           color: $base-black;
           font-size: 16px;
           font-weight: 500;

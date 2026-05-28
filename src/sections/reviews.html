@@ -1,127 +1,138 @@
-<section class="reviews site-section">
+<section class="reviews site-section" id="reviews" aria-labelledby="reviews-title">
   <div class="container">
     <div class="reviews__inner">
-      <h2 class="reviews__title">What Investors Are Saying</h2>
+      <h2 class="reviews__title" id="reviews-title">What Investors Are Saying</h2>
       <p class="reviews__description">
         Early access investors share their experience with deal flow, finally
         done right.
       </p>
     </div>
   </div>
-  <div class="reviews__slider swiper">
+  <div
+    class="reviews__slider swiper"
+    aria-roledescription="carousel"
+    aria-label="Investor testimonials"
+  >
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <div class="reviews__item">
-          <p>
-            "I've used AngelList, Carta, and a dozen other platforms. None of
-            them solved the actual problem — finding founders worth a
-            conversation without drowning in noise. Investr's filter system and
-            video pitches cut my deal review time by 80%. I watched 6 pitches in
-            20 minutes and messaged two founders the same day."
-          </p>
-          <div class="reviews__item-author">
+        <article class="reviews__item">
+          <blockquote class="reviews__quote" cite="#">
+            <p>
+              I've used AngelList, Carta, and a dozen other platforms. None of
+              them solved the actual problem — finding founders worth a
+              conversation without drowning in noise. Investr's filter system and
+              video pitches cut my deal review time by 80%. I watched 6 pitches in
+              20 minutes and messaged two founders the same day.
+            </p>
+          </blockquote>
+          <footer class="reviews__item-author">
             <div class="reviews__item-author-avatar">
-              <img src="/images/author-avatar-1.png" alt="avatar" />
+              <img src="/images/author-avatar-1.png" alt="" width="48" height="48" />
             </div>
             <div class="reviews__item-author-info">
-              <div class="reviews__item-author-name">James Thornton</div>
-              <div class="reviews__item-author-position">
+              <cite class="reviews__item-author-name">James Thornton</cite>
+              <p class="reviews__item-author-position">
                 Partner, Meridian Ventures
-              </div>
+              </p>
             </div>
-          </div>
-          <div class="reviews__item-author-labels">
-            <span>San Francisco </span>
-            <span>$40M AUM</span>
-            <span>FinTech & SaaS Focus</span>
-            <span>Seed–Series A Investor</span>
-          </div>
-        </div>
+          </footer>
+          <ul class="reviews__item-author-labels">
+            <li>San Francisco</li>
+            <li>$40M AUM</li>
+            <li>FinTech &amp; SaaS Focus</li>
+            <li>Seed–Series A Investor</li>
+          </ul>
+        </article>
       </div>
       <div class="swiper-slide">
-        <div class="reviews__item">
-          <p>
-            "The swipe mechanic sounds gimmicky until you use it. It's actually
-            the right metaphor — investing at the early stage is pattern
-            recognition, and Investr's interface surfaces the signal
-            immediately. The pitch cards adapt by stage, so I'm not reading a
-            Series A metrics deck from a pre-revenue founder. Finally, a
-            platform that understands how deal flow actually works."
-          </p>
-          <div class="reviews__item-author">
+        <article class="reviews__item">
+          <blockquote class="reviews__quote" cite="#">
+            <p>
+              The swipe mechanic sounds gimmicky until you use it. It's actually
+              the right metaphor — investing at the early stage is pattern
+              recognition, and Investr's interface surfaces the signal
+              immediately. The pitch cards adapt by stage, so I'm not reading a
+              Series A metrics deck from a pre-revenue founder. Finally, a
+              platform that understands how deal flow actually works.
+            </p>
+          </blockquote>
+          <footer class="reviews__item-author">
             <div class="reviews__item-author-avatar">
-              <img src="/images/author-avatar-2.png" alt="avatar" />
+              <img src="/images/author-avatar-2.png" alt="" width="48" height="48" />
             </div>
             <div class="reviews__item-author-info">
-              <div class="reviews__item-author-name">Priya Mehta</div>
-              <div class="reviews__item-author-position">
-                Angel Investor & LP
-              </div>
+              <cite class="reviews__item-author-name">Priya Mehta</cite>
+              <p class="reviews__item-author-position">
+                Angel Investor &amp; LP
+              </p>
             </div>
-          </div>
-          <div class="reviews__item-author-labels">
-            <span>London, UK </span>
-            <span>Consumer Tech & Impact Investing</span>
-            <span>50+ investments across UK and US</span>
-          </div>
-        </div>
+          </footer>
+          <ul class="reviews__item-author-labels">
+            <li>London, UK</li>
+            <li>Consumer Tech &amp; Impact Investing</li>
+            <li>50+ investments across UK and US</li>
+          </ul>
+        </article>
       </div>
       <div class="swiper-slide">
-        <div class="reviews__item">
-          <p>
-            "I've been angel investing for 8 years and the biggest problem has
-            always been sourcing. Most great founders aren't on the radar of
-            traditional networks. Investr's invite-code model means the quality
-            of what I'm seeing is dramatically higher than open platforms. Three
-            of my last five deals came from pitches I would never have found
-            otherwise."
-          </p>
-          <div class="reviews__item-author">
+        <article class="reviews__item">
+          <blockquote class="reviews__quote" cite="#">
+            <p>
+              I've been angel investing for 8 years and the biggest problem has
+              always been sourcing. Most great founders aren't on the radar of
+              traditional networks. Investr's invite-code model means the quality
+              of what I'm seeing is dramatically higher than open platforms. Three
+              of my last five deals came from pitches I would never have found
+              otherwise.
+            </p>
+          </blockquote>
+          <footer class="reviews__item-author">
             <div class="reviews__item-author-avatar">
-              <img src="/images/author-avatar-3.png" alt="avatar" />
+              <img src="/images/author-avatar-3.png" alt="" width="48" height="48" />
             </div>
             <div class="reviews__item-author-info">
-              <div class="reviews__item-author-name">Marcus Webb</div>
-              <div class="reviews__item-author-position">
+              <cite class="reviews__item-author-name">Marcus Webb</cite>
+              <p class="reviews__item-author-position">
                 Family Office Principal
-              </div>
+              </p>
             </div>
-          </div>
-          <div class="reviews__item-author-labels">
-            <span>New York </span>
-            <span>$120M Portfolio</span>
-            <span>Deep Tech & CleanTech</span>
-            <span>Former Partner, Goldman Sachs Ventures</span>
-          </div>
-        </div>
+          </footer>
+          <ul class="reviews__item-author-labels">
+            <li>New York</li>
+            <li>$120M Portfolio</li>
+            <li>Deep Tech &amp; CleanTech</li>
+            <li>Former Partner, Goldman Sachs Ventures</li>
+          </ul>
+        </article>
       </div>
       <div class="swiper-slide">
-        <div class="reviews__item">
-          <p>
-            "What I didn't expect was how much I'd value the messaging feature.
-            Direct access to founders without going through a warm intro
-            cold-email chain is genuinely transformative. I made first contact
-            with a founder in Singapore, had a video call within 48 hours, and
-            closed a convertible note 3 weeks later. That sequence doesn't
-            happen on any other platform."
-          </p>
-          <div class="reviews__item-author">
+        <article class="reviews__item">
+          <blockquote class="reviews__quote" cite="#">
+            <p>
+              What I didn't expect was how much I'd value the messaging feature.
+              Direct access to founders without going through a warm intro
+              cold-email chain is genuinely transformative. I made first contact
+              with a founder in Singapore, had a video call within 48 hours, and
+              closed a convertible note 3 weeks later. That sequence doesn't
+              happen on any other platform.
+            </p>
+          </blockquote>
+          <footer class="reviews__item-author">
             <div class="reviews__item-author-avatar">
-              <img src="/images/author-avatar-4.png" alt="avatar" />
+              <img src="/images/author-avatar-4.png" alt="" width="48" height="48" />
             </div>
             <div class="reviews__item-author-info">
-              <div class="reviews__item-author-name">Sofia Andersson</div>
-              <div class="reviews__item-author-position">
+              <cite class="reviews__item-author-name">Sofia Andersson</cite>
+              <p class="reviews__item-author-position">
                 Venture Partner, Nordic Alpha Fund
-              </div>
+              </p>
             </div>
-          </div>
-          <div class="reviews__item-author-labels">
-            <span>Stockholm </span>
-            <span>B2B SaaS & AI Vertical Focus</span>
-            <span>B2B SaaS & AI Vertical Focus</span>
-          </div>
-        </div>
+          </footer>
+          <ul class="reviews__item-author-labels">
+            <li>Stockholm</li>
+            <li>B2B SaaS &amp; AI Vertical Focus</li>
+          </ul>
+        </article>
       </div>
     </div>
   </div>
