@@ -1,5 +1,18 @@
 html {
   scroll-behavior: smooth;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $base-light-gray;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $base-gray;
+    border-radius: 10px;
+  }
 }
 
 body {
