@@ -1,5 +1,6 @@
 {
-  "name": "vite-template-ts",
+  "name": "investr",
+  "description": "Marketing landing page for Investr — a mobile-first marketplace connecting founders and investors (Vite, TypeScript, Handlebars, SCSS).",
   "private": true,
   "version": "0.0.0",
   "type": "module",
