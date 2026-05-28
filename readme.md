@@ -28,6 +28,7 @@ The landing page presents the value proposition, social proof, feature walkthrou
 | Different | Product differentiators carousel |
 | Form | Waitlist signup (role, name, email) |
 | FAQ | Accessible accordion |
+| Privacy Policy | Legal page (`privacy.html`) |
 
 ---
 
@@ -105,6 +106,7 @@ VITE_WEBP_CONVERT=false npm run build
 │  └─ convertToWebp.ts      # PNG/JPEG → WebP in public/
 ├─ src/
 │  ├─ index.html            # Main HTML entry
+│  ├─ privacy.html          # Privacy Policy page
 │  ├─ sections/             # Page blocks (Handlebars partials)
 │  ├─ templates/            # Header, footer
 │  ├─ js/
