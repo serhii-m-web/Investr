@@ -71,6 +71,7 @@ function init(): void {
   initReviewsSlider();
   initChangesSection();
   initDifferentSlider();
+  initFaq();
 }
 
 if (document.readyState === 'loading') {
@@ -96,6 +97,14 @@ function initDifferentSlider(): void {
       spaceBetween: 32,
       grabCursor: true,
       speed: 1350,
+    });
+  });
+}
+
+function initFaq(): void {
+  document.querySelectorAll<HTMLElement>('.faq__item').forEach((el) => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('active');
     });
   });
 }

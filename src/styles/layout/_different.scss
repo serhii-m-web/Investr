@@ -17,20 +17,25 @@
     overflow: visible !important;
 
     .swiper-slide {
-      min-height: 100%;
-      height: auto;
-
+      &:nth-child(2) {
+        .different__image {
+          margin-left: 40px;
+        }
+      }
       &:nth-child(4) {
         .different__image {
           width: 60%;
+          margin-inline: auto;
         }
       }
     }
   }
 
   &__item {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    height: calc(100% - 80px);
+    min-height: 630px;
     padding: 40px 40px 0 40px;
     border-radius: 32px;
     box-shadow: 0px 4px 20px 0px #1315151f;
@@ -45,7 +50,7 @@
 
     p {
       text-align: start;
-      margin-bottom: 24px;
+      margin-bottom: auto;
     }
   }
 
