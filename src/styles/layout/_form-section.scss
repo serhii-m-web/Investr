@@ -1,6 +1,7 @@
 .form-section {
   overflow: hidden;
   position: relative;
+  min-height: 1300px;
 
   .container {
     max-width: 900px;
@@ -26,7 +27,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     z-index: -1;
 
     &::after {
@@ -35,11 +36,11 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 50%;
+      height: 60%;
       background: linear-gradient(
         180deg,
         rgba(248, 251, 255, 0) 0%,
-        #f8fbff 100%
+        #f8fbff 75%
       );
     }
   }

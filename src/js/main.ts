@@ -1,15 +1,19 @@
 import { Swiper } from 'swiper';
-import { EffectCreative } from 'swiper/modules';
+import { EffectCreative, Autoplay, Navigation } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 import { initTabs } from './components/tabs';
 
 const changesSliderOptions: SwiperOptions = {
-  modules: [EffectCreative],
+  modules: [EffectCreative, Autoplay, Navigation],
   effect: 'creative',
   slidesPerView: 1,
   grabCursor: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
   speed: 700,
   creativeEffect: {
     limitProgress: 1,
@@ -33,7 +37,23 @@ function getOrInitChangesSlider(element: HTMLElement): Swiper {
   let swiper = changesSliders.get(element);
 
   if (!swiper) {
-    swiper = new Swiper(element, changesSliderOptions);
+    const prevEl = element.querySelector<HTMLElement>(
+      '.changes__slider-arrow--prev',
+    );
+    const nextEl = element.querySelector<HTMLElement>(
+      '.changes__slider-arrow--next',
+    );
+
+    swiper = new Swiper(element, {
+      ...changesSliderOptions,
+      navigation:
+        prevEl && nextEl
+          ? {
+              prevEl,
+              nextEl,
+            }
+          : undefined,
+    });
     changesSliders.set(element, swiper);
   }
 
@@ -102,20 +122,22 @@ function initDifferentSlider(): void {
 }
 
 function initFaq(): void {
-  document.querySelectorAll<HTMLButtonElement>('.faq__item-trigger').forEach((button) => {
-    const item = button.closest('.faq__item');
-    const panel = document.getElementById(
-      button.getAttribute('aria-controls') ?? '',
-    );
+  document
+    .querySelectorAll<HTMLButtonElement>('.faq__item-trigger')
+    .forEach((button) => {
+      const item = button.closest('.faq__item');
+      const panel = document.getElementById(
+        button.getAttribute('aria-controls') ?? '',
+      );
 
-    if (!item || !panel) {
-      return;
-    }
+      if (!item || !panel) {
+        return;
+      }
 
-    button.addEventListener('click', () => {
-      const isOpen = item.classList.toggle('active');
-      button.setAttribute('aria-expanded', String(isOpen));
-      panel.toggleAttribute('hidden', !isOpen);
+      button.addEventListener('click', () => {
+        const isOpen = item.classList.toggle('active');
+        button.setAttribute('aria-expanded', String(isOpen));
+        panel.toggleAttribute('hidden', !isOpen);
+      });
     });
-  });
 }
