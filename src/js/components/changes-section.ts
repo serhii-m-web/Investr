@@ -1,0 +1,79 @@
+import { Swiper } from 'swiper';
+import { EffectCreative, Autoplay, Navigation } from 'swiper/modules';
+import type { SwiperOptions } from 'swiper/types';
+import { initTabs } from './tabs';
+
+const changesSliderOptions: SwiperOptions = {
+  modules: [EffectCreative, Autoplay, Navigation],
+  effect: 'creative',
+  slidesPerView: 1,
+  grabCursor: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  speed: 700,
+  creativeEffect: {
+    limitProgress: 1,
+    perspective: true,
+    prev: {
+      translate: [0, 0, -120],
+      opacity: 0,
+      scale: 0.92,
+    },
+    next: {
+      translate: ['110%', 0, 0],
+      opacity: 0,
+      scale: 0.92,
+    },
+  },
+};
+
+const changesSliders = new WeakMap<HTMLElement, Swiper>();
+
+function getOrInitChangesSlider(element: HTMLElement): Swiper {
+  let swiper = changesSliders.get(element);
+
+  if (!swiper) {
+    const prevEl = element.querySelector<HTMLElement>(
+      '.changes__slider-arrow--prev',
+    );
+    const nextEl = element.querySelector<HTMLElement>(
+      '.changes__slider-arrow--next',
+    );
+
+    swiper = new Swiper(element, {
+      ...changesSliderOptions,
+      navigation:
+        prevEl && nextEl
+          ? {
+              prevEl,
+              nextEl,
+            }
+          : undefined,
+    });
+    changesSliders.set(element, swiper);
+  }
+
+  swiper.update();
+  return swiper;
+}
+
+export function initChangesSection(): void {
+  initTabs('[data-tabs]', {
+    onChange: (_index, panel) => {
+      const slider = panel.querySelector<HTMLElement>('.changes__slider');
+      if (slider) {
+        getOrInitChangesSlider(slider);
+      }
+    },
+  });
+
+  const activePanel = document.querySelector<HTMLElement>(
+    '[data-tabs] [data-tabs-panel].active',
+  );
+  const slider = activePanel?.querySelector<HTMLElement>('.changes__slider');
+  if (slider) {
+    getOrInitChangesSlider(slider);
+  }
+}
