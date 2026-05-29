@@ -8,7 +8,18 @@
   position: relative;
 
   .header__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
+
+    @include media('<desktop') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .header__btn {
+    grid-column: 3;
+    justify-self: end;
   }
 
   .header__back {
@@ -35,7 +46,7 @@
   padding: 140px 0 95px;
 
   @include media('<=tablet') {
-    padding-top: 120px;
+    padding-top: 50px;
   }
 
   &__content {
