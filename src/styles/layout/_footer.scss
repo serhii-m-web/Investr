@@ -43,8 +43,8 @@
     width: 100%;
     margin: 0 auto 12px;
     text-align: center;
+    @include adaptive-value('font-size', 52, 40, 1);
     font-family: $base-font-family-secondary;
-    font-size: $h3-font-size;
     font-weight: 600;
     line-height: calc(56 / 52);
     color: $base-black;
@@ -58,11 +58,21 @@
   &__nav {
     margin-top: 60px;
 
+    @include media('<tablet') {
+      margin-top: 40px;
+    }
+
     &-list {
       display: flex;
       align-items: center;
-      gap: 44px;
+      gap: 24px 44px;
       list-style: none;
+      padding: 0;
+      margin: 0;
+
+      @include media('<tablet') {
+        flex-direction: column;
+      }
     }
 
     &-item {
@@ -87,11 +97,27 @@
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 60px;
+
+    @include media('<desktop') {
+      grid-template-columns: 1fr;
+      row-gap: 16px;
+      margin-top: 40px;
+    }
   }
 
   &__copyright {
     grid-column: 1;
     justify-self: start;
+
+    @include media('<desktop') {
+      grid-column: auto;
+      grid-row: 2;
+      justify-self: center;
+      border-top: 1px solid #4a4b4f33;
+      width: 100%;
+      text-align: center;
+      padding-top: 16px;
+    }
   }
 
   &__social-list {
@@ -101,6 +127,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
+
+    @include media('<desktop') {
+      gap: 10px;
+      grid-column: auto;
+      grid-row: 1;
+      margin-bottom: 40px;
+    }
   }
 
   &__social-item {
@@ -124,5 +157,13 @@
   &__link {
     grid-column: 3;
     justify-self: end;
+    @include adaptive-value('font-size', 16, 14, 1);
+    color: $base-gray;
+
+    @include media('<desktop') {
+      grid-column: auto;
+      grid-row: 3;
+      justify-self: center;
+    }
   }
 }

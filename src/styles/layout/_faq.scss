@@ -4,13 +4,17 @@
     width: 100%;
     margin-inline: auto;
     text-align: center;
-    margin-bottom: 84px;
+    @include adaptive-value('margin-bottom', 84, 40, 1);
   }
 
   &__items {
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @include media('<tablet') {
+      gap: 12px;
+    }
   }
 
   &__item {
@@ -50,7 +54,7 @@
   }
 
   &__item-title {
-    font-size: 20px;
+    @include adaptive-value('font-size', 20, 18, 1);
     font-weight: 500;
     color: $base-black;
   }

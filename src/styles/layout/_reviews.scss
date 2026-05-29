@@ -7,7 +7,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 20%;
+    width: 10%;
     height: 100%;
     background: linear-gradient(
       270deg,
@@ -16,6 +16,10 @@
     );
     z-index: 2;
     user-select: none;
+
+    @include media('<desktop') {
+      display: none;
+    }
   }
 
   &::after {
@@ -23,16 +27,20 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 20%;
+    width: 10%;
     height: 100%;
     background: linear-gradient(90deg, rgba(248, 251, 255, 0) 0%, #f8fbff 100%);
     z-index: 1;
     user-select: none;
+
+    @include media('<desktop') {
+      display: none;
+    }
   }
 
   &__inner {
     text-align: center;
-    margin-bottom: 84px;
+    @include adaptive-value('margin-bottom', 84, 48, 1);
   }
 
   &__title {
@@ -50,7 +58,7 @@
     width: 100%;
     margin-inline: auto;
     color: $base-gray;
-    @include adaptive-value('font-size', 18, 16, 1);
+    @include adaptive-value('font-size', 18, 14, 1);
     line-height: calc(22 / 18);
   }
 
@@ -76,24 +84,16 @@
     box-shadow: 0px 4px 20px 0px #1315150d;
     height: calc(100% - 48px);
 
-    &-quote {
-      margin: 0 0 auto;
-      padding: 0;
-      border: none;
-
-      p {
-        color: #606163;
-        @include adaptive-value('font-size', 20, 16, 1);
-        line-height: calc(24 / 20);
-        margin: 0;
-      }
-    }
-
     &-author {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 32px;
+      margin-top: auto;
+
+      @include media('<tablet') {
+        margin-bottom: 16px;
+      }
 
       &-avatar {
         display: flex;
@@ -125,6 +125,7 @@
         color: $base-black;
         @include adaptive-value('font-size', 22, 18, 1);
         line-height: calc(26 / 22);
+        font-family: $base-font-family-secondary;
       }
 
       &-position {
@@ -145,7 +146,7 @@
 
         li {
           color: $base-black;
-          font-size: 16px;
+          @include adaptive-value('font-size', 16, 14, 1);
           font-weight: 500;
           letter-spacing: -0.02em;
           padding: 12px;
@@ -154,6 +155,20 @@
           box-shadow: 0px 4px 20px 0px #1315150d;
         }
       }
+    }
+  }
+
+  &__quote {
+    margin: 0 0 auto;
+    padding: 0;
+    border: none;
+    @include adaptive-value('margin-bottom', 44, 32, 1);
+
+    p {
+      color: #606163;
+      @include adaptive-value('font-size', 20, 16, 1);
+      line-height: calc(24 / 20);
+      margin: 0;
     }
   }
 }

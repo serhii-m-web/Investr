@@ -4,17 +4,37 @@
       <a class="header__logo" href="#top" aria-label="Investr — back to top">
         <img src="/icons/logo.svg" alt="" width="60" height="54" />
       </a>
-      <nav aria-label="Main navigation" class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-item">
-            <a href="#reviews">Investor Testimonials</a>
-          </li>
-          <li class="header__nav-item"><a href="#features">Features</a></li>
-          <li class="header__nav-item"><a href="#how-it-works">How It Works</a></li>
-          <li class="header__nav-item"><a href="#why-investr">Why Investr</a></li>
-          <li class="header__nav-item"><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
+
+      <button
+        type="button"
+        class="header__burger"
+        aria-expanded="false"
+        aria-controls="header-menu"
+      >
+        <span class="visually-hidden">Open menu</span>
+        <span class="header__burger-line" aria-hidden="true"></span>
+        <span class="header__burger-line" aria-hidden="true"></span>
+      </button>
+
+      <div class="header__overlay" aria-hidden="true"></div>
+
+      <div class="header__menu" id="header-menu">
+        <nav aria-label="Main navigation" class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="#reviews">Investor Testimonials</a>
+            </li>
+            <li class="header__nav-item"><a href="#features">Features</a></li>
+            <li class="header__nav-item">
+              <a href="#how-it-works">How It Works</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#why-investr">Why Investr</a>
+            </li>
+            <li class="header__nav-item"><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+      </div>
       <a href="#waitlist" class="header__btn btn">Join the Waitlist</a>
     </div>
   </div>

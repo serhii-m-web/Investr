@@ -28,6 +28,10 @@ body {
 
 .site-section {
   padding: 95px 0;
+
+  @include media('<tablet') {
+    padding: 40px 0;
+  }
 }
 
 .visually-hidden {

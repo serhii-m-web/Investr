@@ -6,7 +6,7 @@
     max-width: 605px;
     width: 100%;
     margin-inline: auto;
-    margin-bottom: 84px;
+    @include adaptive-value('margin-bottom', 84, 40, 1);
   }
 
   &__slider {
@@ -15,6 +15,13 @@
     margin-inline: auto;
     padding: 0 15px !important;
     overflow: visible !important;
+
+    .swiper-wrapper {
+      @include media('<tablet') {
+        flex-direction: column;
+        row-gap: 20px;
+      }
+    }
 
     .swiper-slide {
       &:nth-child(2) {
@@ -35,12 +42,18 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    min-height: 630px;
+    @include adaptive-value('min-height', 630, 430, 1);
     padding: 40px 40px 0 40px;
     border-radius: 32px;
     box-shadow: 0px 4px 20px 0px #1315151f;
     background-color: $base-white;
     text-align: center;
+
+    @include media('<tablet') {
+      min-height: 100%;
+      height: auto;
+      padding: 24px 24px 0 24px;
+    }
 
     h3 {
       text-align: start;
@@ -51,6 +64,10 @@
     p {
       text-align: start;
       margin-bottom: auto;
+
+      @include media('<tablet') {
+        margin-bottom: 20px;
+      }
     }
   }
 

@@ -1,6 +1,12 @@
 .percent-cards {
   margin-top: -50px;
   padding-bottom: 95px;
+  position: relative;
+  @include adaptive-value('margin-top', -50, -20, 1);
+
+  @include media('<tablet') {
+    padding-bottom: 50px;
+  }
 
   &-2 {
     margin-top: 0;
@@ -9,17 +15,22 @@
   &__inner {
     position: relative;
     padding-top: 350px;
+
+    @include media('<tablet') {
+      @include adaptive-value('padding-top', 350, 180, 1);
+    }
   }
 
   &__img {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translatex(-50%);
     max-width: 1119px;
     width: 100%;
     height: auto;
-    object-fit: cover;
     z-index: -1;
+    min-height: 240px;
 
     img {
       width: 100%;
@@ -35,6 +46,10 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    @include media('<desktop') {
+      flex-direction: column;
+    }
   }
 
   &__item {
@@ -48,12 +63,26 @@
     box-shadow: 0px 4px 20px 0px #1315150d;
     width: 400px;
 
+    @include media('<tablet') {
+      max-width: 300px;
+      width: 80%;
+    }
+
     &:nth-child(2) {
       transform: scale(1.05);
       width: 500px;
 
+      @include media('<tablet') {
+        max-width: 340px;
+        width: 90%;
+      }
+
       .percent-cards__item-number {
         margin-bottom: 100px;
+
+        @include media('<tablet') {
+          margin-bottom: 50px;
+        }
       }
     }
 
@@ -71,9 +100,14 @@
       font-family: $base-font-family-secondary;
       box-shadow: 0px 10px 15px 0px #142a4080;
       margin-bottom: 76px;
+
+      @include media('<tablet') {
+        margin-bottom: 50px;
+      }
     }
 
     &-title {
+      @include adaptive-value('font-size', 64, 48, 1);
       font-size: 64px;
       font-weight: 600;
       color: $base-black;

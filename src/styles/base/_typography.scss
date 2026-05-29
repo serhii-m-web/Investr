@@ -26,13 +26,13 @@ h1,
 
 h2,
 .h2 {
-  font-size: $h2-font-size;
+  @include adaptive-value('font-size', 72, 40, 1);
   line-height: calc(76 / 72);
 }
 
 h3,
 .h3 {
-  font-size: $h3-font-size;
+  @include adaptive-value('font-size', 52, 32, 1);
   line-height: calc(56 / 52);
 }
 
@@ -54,7 +54,7 @@ h6,
 p {
   margin: 0;
   color: $base-gray;
-  @include adaptive-value('font-size', 18, 16, 1);
+  @include adaptive-value('font-size', 18, 14, 1);
   line-height: calc(22 / 18);
 }
 

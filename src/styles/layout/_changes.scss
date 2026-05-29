@@ -33,6 +33,10 @@
     );
     z-index: 2;
     user-select: none;
+
+    @include media('<tablet') {
+      display: none;
+    }
   }
 
   &::after {
@@ -45,6 +49,10 @@
     background: linear-gradient(90deg, rgba(248, 251, 255, 0) 0%, #f8fbff 100%);
     z-index: 1;
     user-select: none;
+
+    @include media('<tablet') {
+      display: none;
+    }
   }
 
   &__title {
@@ -61,7 +69,8 @@
   }
 
   &__buttons {
-    margin: 0 auto 105px auto;
+    margin: 0 auto;
+    @include adaptive-value('margin-bottom', 105, 56, 1);
   }
 
   &__content {
@@ -194,7 +203,8 @@
         height: 50px;
         border-radius: 50%;
         background: $base-blue;
-        font-size: 18px;
+        @include adaptive-value('font-size', 18, 16, 1);
+        line-height: calc(22 / 18);
         font-weight: 600;
         color: $base-white;
         font-family: $base-font-family-secondary;
