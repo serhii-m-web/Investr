@@ -103,11 +103,15 @@
 
   &__title-drop {
     position: absolute;
-    width: 127px;
-    height: 47px;
+    width: 44px;
+    height: 20px;
     background: #fff;
     filter: blur(24px);
     border-radius: 999px;
+
+    @include media('<tablet') {
+      filter: blur(9px);
+    }
 
     &--1 {
       top: 0;

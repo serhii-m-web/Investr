@@ -1,7 +1,7 @@
 .btn {
   display: inline-block;
   font-family: $base-font-family-secondary;
-  font-size: 18px;
+  @include adaptive-value('font-size', 18, 16, 1);
   font-weight: 700;
   text-decoration: none;
   transition: color 0.3s ease;
